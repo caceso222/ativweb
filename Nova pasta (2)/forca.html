@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const palavrasAleatorias = [
+            "borboleta", "mar", "sorriso", "chave", "café", "brisa",
+            "cacto", "mel", "giz", "lua", "sombra", "nuvem",
+            "piano", "manga", "foguete", "neve", "vento", "lenço",
+            "caneta", "relógio", "biscoito", "travesseiro", "viagem", "girassol",
+            "abacaxi", "espelho", "estrela", "cimento", "tigre", "algodão"
+        ];
+
+        let pa_ale = palavrasAleatorias[floor(Math.random())];
+        let tentf = 0;
+        let papa = palavra(pa_ale);
+        let acertos = 0;
+
+        Alert("bem-vindo ao jogo da forca");
+
+        while (tentf < 6) {
+            let letten = prompt("palpite uma letra :");
+            let acertou = false
+            for (i = 0; i < papa.length; i++)
+                if (pa_ale[i] == letten) {
+                    papa.splice(i, 0, "letten");
+                    acertos++;
+                    acertou = true;
+                }
+            if (!acertou) {
+                tentf++;
+            }
+            Alert(`você possui ${6 - tenf} tentativas restantes\n ${papa}`)
+
+        }
+
+        if (acertos === pa_ale.length) {
+            alert("Parabéns! Você adivinhou a palavra!");
+        } else {
+            alert(`Fim de jogo! A palavra era: ${pa_ale}`);
+        }
+
+        function palavra(palavraAleatoria) {
+            let palavra = "";
+            for (i = 0; i < palavraAleatoria.length; i++) {
+                palavra.push("_ ")
+            }
+            return palavra
+        }
+
+    </script>
+</body>
+
+</html>
