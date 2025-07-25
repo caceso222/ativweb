@@ -18,42 +18,34 @@
             "abacaxi", "espelho", "estrela", "cimento", "tigre", "algodão"
         ];
 
-        let pa_ale = palavrasAleatorias[floor(Math.random())];
-        let tentf = 0;
-        let papa = palavra(pa_ale);
-        let acertos = 0;
+        const palavra_aleatoria = palavrasAleatorias[Math.floor(Math.random())];
+        let tentativas_fracassadas = 0;
+        let palavra_palpitada = Array(palavra_aleatoria.length).fill("_");
 
-        Alert("bem-vindo ao jogo da forca");
+        alert("bem-vindo ao jogo da forca");
 
         while (tentf < 6) {
-            let letten = prompt("palpite uma letra :");
+            let letra_tentada = prompt("palpite uma letra :").toLowerCase();
             let acertou = false
-            for (i = 0; i < papa.length; i++)
-                if (pa_ale[i] == letten) {
-                    papa.splice(i, 0, "letten");
-                    acertos++;
+            for (let i = 0; i < palavra_aleatoria.length; i++) {
+                if (palavra_aleatoria[i] === letra_tentada && !(palavra_palpitada[i] === "_")) {
+                    palavra_palpitada[i] = letra_tentada;
                     acertou = true;
-                }
-            if (!acertou) {
-                tentf++;
+                }   
             }
-            Alert(`você possui ${6 - tenf} tentativas restantes\n ${papa}`)
+            if (!acertou) {
+                tentativas_fracassadas++;
+            }
+            alert(`você possui ${6 - tentativas_fracassadas} tentativas restantes\n ${palavra_palpitada}`)
 
         }
 
         if (acertos === pa_ale.length) {
             alert("Parabéns! Você adivinhou a palavra!");
         } else {
-            alert(`Fim de jogo! A palavra era: ${pa_ale}`);
+            alert(`Fim de jogo! A palavra era: ${palavra_aleatoria.join()}`);
         }
 
-        function palavra(palavraAleatoria) {
-            let palavra = "";
-            for (i = 0; i < palavraAleatoria.length; i++) {
-                palavra.push("_ ")
-            }
-            return palavra
-        }
 
     </script>
 </body>
