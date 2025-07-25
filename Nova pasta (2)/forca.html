@@ -18,34 +18,40 @@
             "abacaxi", "espelho", "estrela", "cimento", "tigre", "algodão"
         ];
 
-        const palavra_aleatoria = palavrasAleatorias[Math.floor(Math.random())];
+        const palavra_aleatoria = palavrasAleatorias[Math.floor(Math.random()*palavrasAleatorias.length)];
         let tentativas_fracassadas = 0;
         let palavra_palpitada = Array(palavra_aleatoria.length).fill("_");
+        let palpites_errados = [];
 
         alert("bem-vindo ao jogo da forca");
 
-        while (tentf < 6) {
+        while (tentativas_fracassadas < 6) {
+            
             let letra_tentada = prompt("palpite uma letra :").toLowerCase();
             let acertou = false
+
             for (let i = 0; i < palavra_aleatoria.length; i++) {
-                if (palavra_aleatoria[i] === letra_tentada && !(palavra_palpitada[i] === "_")) {
+                if (palavra_aleatoria[i] === letra_tentada) {
                     palavra_palpitada[i] = letra_tentada;
                     acertou = true;
-                }   
+                }
             }
+
             if (!acertou) {
                 tentativas_fracassadas++;
+                palpites_errados.push(letra_tentada);
             }
-            alert(`você possui ${6 - tentativas_fracassadas} tentativas restantes\n ${palavra_palpitada}`)
 
+            alert(`você possui ${6 - tentativas_fracassadas} tentativas restantes:\n ${palavra_palpitada}\n letras utilizadas: ${palpites_errados}`)
+
+            if (palavra_palpitada.join("") == palavra_aleatoria) {
+                alert("Parabéns! Você adivinhou a palavra!");
+                break;
+            }
+
+        
         }
-
-        if (acertos === pa_ale.length) {
-            alert("Parabéns! Você adivinhou a palavra!");
-        } else {
-            alert(`Fim de jogo! A palavra era: ${palavra_aleatoria.join()}`);
-        }
-
+        alert(`Fim de jogo! A palavra era: ${palavra_aleatoria}`);
 
     </script>
 </body>
